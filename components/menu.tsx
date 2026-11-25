@@ -59,7 +59,7 @@ export function Menu() {
           </Reveal>
         </div>
 
-        <Reveal delay={120} className="relative mt-14 sm:mt-16">
+        <div className="relative mt-14 sm:mt-16">
           {(["sweet", "savory"] as const).map((t) => (
             <div
               key={t}
@@ -77,7 +77,7 @@ export function Menu() {
                   >
                     <article className="group">
                       <div className="relative aspect-[4/5] overflow-hidden bg-sand">
-                        <Image
+                        <Image loading="eager"
                           src={item.image}
                           alt={item.alt}
                           fill
@@ -93,7 +93,7 @@ export function Menu() {
               </ul>
             </div>
           ))}
-        </Reveal>
+        </div>
 
         <Reveal className="mt-14 flex flex-col items-start justify-between gap-6 border-t border-brand/15 pt-8 sm:flex-row sm:items-center">
           <p className="max-w-xl text-muted">

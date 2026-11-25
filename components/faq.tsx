@@ -37,7 +37,7 @@ export function Faq() {
             {/* Small photo card with a direct line to the owners */}
             <Reveal delay={160} className="mt-10 hidden items-center gap-5 bg-cream p-4 pr-6 sm:flex lg:max-w-sm">
               <div className="relative size-20 shrink-0 overflow-hidden">
-                <Image src={tea} alt="" fill sizes="80px" placeholder="blur" className="object-cover" />
+                <Image loading="eager" src={tea} alt="" fill sizes="80px" placeholder="blur" className="object-cover" />
               </div>
               <div>
                 <p className="font-display text-xl leading-tight text-brand">Still have a question?</p>

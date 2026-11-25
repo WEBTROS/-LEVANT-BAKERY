@@ -41,7 +41,7 @@ export function Instagram() {
                 aria-label={`${t.alt} — view on Instagram`}
                 className="group block h-full w-full"
               >
-                <Image
+                <Image loading="eager"
                   src={t.src}
                   alt={t.alt}
                   fill

@@ -15,7 +15,7 @@ export function Orders() {
       <div className="mx-auto grid max-w-[1400px] items-center gap-14 px-5 sm:px-8 lg:grid-cols-12 lg:gap-10 lg:px-12">
         <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:col-span-6">
           <Reveal variant="image" className="relative aspect-[3/4] overflow-hidden bg-sand">
-            <Image
+            <Image loading="eager"
               src={pie}
               alt="Homemade lattice apple pie with crumb topping on a gilded stand"
               fill
@@ -25,7 +25,7 @@ export function Orders() {
             />
           </Reveal>
           <Reveal variant="image" delay={140} className="relative mt-12 aspect-[3/4] overflow-hidden bg-sand sm:mt-20">
-            <Image
+            <Image loading="eager"
               src={cake}
               alt="Sweet potato date bundt cake with brown butter glaze on a gold cake stand"
               fill

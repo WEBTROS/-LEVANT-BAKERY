@@ -41,7 +41,7 @@ export function Footer() {
         <div className="grid gap-14 py-16 sm:py-20 lg:grid-cols-12 lg:gap-10">
           {/* Brand + socials */}
           <div className="flex flex-col gap-8 sm:flex-row sm:items-start lg:col-span-5 lg:flex-col xl:flex-row">
-            <Image
+            <Image loading="eager"
               src={logo}
               alt={`${site.name} logo — Sweet & Savory, est. 2026`}
               className="h-auto w-32 shrink-0 sm:w-36"

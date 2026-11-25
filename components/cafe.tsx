@@ -35,7 +35,7 @@ export function Cafe() {
         {/* Asymmetric gallery */}
         <div className="mt-16 grid grid-cols-2 gap-3 sm:mt-20 sm:gap-5 lg:grid-cols-12">
           <Reveal variant="image" className="parallax relative col-span-2 aspect-[4/5] overflow-hidden bg-[#2f2219] sm:aspect-[16/11] lg:col-span-7 lg:aspect-auto lg:h-[min(78vh,760px)]">
-            <Image
+            <Image loading="eager"
               src={lounge}
               alt="Café lounge with framed hunting prints, brass lamp, bentwood chairs and red velvet seating"
               fill
@@ -46,7 +46,7 @@ export function Cafe() {
           </Reveal>
           <div className="col-span-2 grid grid-cols-2 gap-3 sm:gap-5 lg:col-span-5 lg:grid-cols-1 lg:grid-rows-[1.25fr_1fr]">
             <Reveal variant="image" delay={120} className="relative aspect-[3/4] overflow-hidden bg-[#2f2219] lg:aspect-auto">
-              <Image
+              <Image loading="eager"
                 src={corner}
                 alt="Window corner with plaid curtains, a leather armchair and a marble side table"
                 fill
@@ -56,7 +56,7 @@ export function Cafe() {
               />
             </Reveal>
             <Reveal variant="image" delay={220} className="relative aspect-[3/4] overflow-hidden bg-[#2f2219] lg:aspect-auto">
-              <Image
+              <Image loading="eager"
                 src={latte}
                 alt="Iced latte layered with house-made syrup on a marble table"
                 fill

@@ -42,7 +42,7 @@ export function Story() {
 
           <div className="relative lg:col-span-6 lg:col-start-7 xl:col-span-5 xl:col-start-8">
             <Reveal variant="image" className="parallax relative aspect-[4/5] w-[82%] overflow-hidden bg-sand">
-              <Image
+              <Image loading="eager"
                 src={counter}
                 alt="The morning pastry counter: cinnamon knots, croissants and chocolate chip cookies"
                 fill
@@ -56,7 +56,7 @@ export function Story() {
               delay={220}
               className="absolute -bottom-10 right-0 aspect-[3/4] w-[44%] overflow-hidden border-[6px] border-paper bg-sand sm:border-[10px]"
             >
-              <Image
+              <Image loading="eager"
                 src={tea}
                 alt="Black tea in a glass mug with a slice of brown butter semolina cake on a brass tray"
                 fill

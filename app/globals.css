@@ -68,23 +68,6 @@ body {
   transform: none;
 }
 
-/* Image curtain reveal: the frame wipes open and the photo settles in. */
-[data-reveal-img] {
-  clip-path: inset(12% 0 0 0);
-  transition: clip-path 1.2s var(--ease-out-soft);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-[data-reveal-img] img {
-  transform: scale(1.12);
-  transition: transform 1.6s var(--ease-out-soft);
-  transition-delay: var(--reveal-delay, 0ms);
-}
-[data-reveal-img="in"] {
-  clip-path: inset(0 0 0 0);
-}
-[data-reveal-img="in"] img {
-  transform: scale(1);
-}
 
 /* ——— Hero entrance ——— */
 @keyframes rise {

@@ -1,0 +1,238 @@
+@import "tailwindcss";
+
+/* Brand palette sampled from the Levant logo: warm cream paper + espresso ink. */
+@theme {
+  --color-paper: #ffffff;
+  --color-cream: #fbf7f1;
+  --color-sand: #efe6da;
+  --color-line: #e6ddd1;
+  --color-ink: #3a2a20;
+  --color-brand: #4e382a;
+  --color-muted: #75604f;
+  --color-espresso: #241913;
+  --color-brass: #a8875a;
+
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-jost), "Jost", system-ui, sans-serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 0.75, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 350;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-cream);
+}
+
+/* ——— Type helpers ——— */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 450;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+
+/* ——— Scroll reveal (driven by components/reveal.tsx) ——— */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.9s var(--ease-out-soft),
+    transform 1s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal="in"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Image curtain reveal: the frame wipes open and the photo settles in. */
+[data-reveal-img] {
+  clip-path: inset(12% 0 0 0);
+  transition: clip-path 1.2s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal-img] img {
+  transform: scale(1.12);
+  transition: transform 1.6s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal-img="in"] {
+  clip-path: inset(0 0 0 0);
+}
+[data-reveal-img="in"] img {
+  transform: scale(1);
+}
+
+/* ——— Hero entrance ——— */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 36px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes settle {
+  from {
+    transform: scale(1.12);
+  }
+  to {
+    transform: scale(1.02);
+  }
+}
+.hero-media {
+  animation: settle 2.4s var(--ease-out-soft) both;
+}
+
+/* Hero background loop — 3 slides, 8s each (24s cycle), 1.6s crossfades.
+   Each slide: fade in (0–6.67%), hold, fade out (33.3–40%), rest hidden.
+   Delays are negative so the loop is already "in phase" on first paint: slide 0 shows immediately. */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: hero-cycle 24s linear infinite;
+  animation-delay: calc(var(--i, 0) * 8s - 1.6s);
+}
+.hero-slide:not(:first-child) {
+  /* Shift later slides back a full cycle so none of them flashes before its turn. */
+  animation-delay: calc(var(--i, 0) * 8s - 1.6s - 24s);
+}
+@keyframes hero-cycle {
+  0% {
+    opacity: 0;
+  }
+  6.667%,
+  33.333% {
+    opacity: 1;
+  }
+  40%,
+  100% {
+    opacity: 0;
+  }
+}
+/* Slow drift-zoom so the room feels alive without distracting. */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.09);
+  }
+}
+.hero-zoom {
+  animation: hero-zoom 12s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide,
+  .hero-zoom {
+    animation: none !important;
+  }
+  .hero-slide:first-child {
+    opacity: 1;
+  }
+}
+.hero-rise {
+  animation: rise 1.1s var(--ease-out-soft) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Subtle scroll-linked drift for images where the browser supports it. */
+@supports (animation-timeline: view()) {
+  @keyframes drift {
+    from {
+      transform: translate3d(0, -6%, 0) scale(1.12);
+    }
+    to {
+      transform: translate3d(0, 6%, 0) scale(1.12);
+    }
+  }
+  .parallax img {
+    animation: drift linear both;
+    animation-timeline: view();
+  }
+}
+
+/* Review marquee */
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.marquee-track {
+  animation: marquee 60s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbars on horizontal snap rails, keep them scrollable. */
+.rail {
+  scrollbar-width: none;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+/* Underline that draws in on hover */
+.link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s var(--ease-out-soft);
+}
+.link-draw:hover,
+.link-draw:focus-visible {
+  background-size: 100% 1px;
+}
+
+:focus-visible {
+  outline: 1.5px solid currentColor;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-reveal],
+  [data-reveal-img],
+  [data-reveal-img] img {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+}

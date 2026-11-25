@@ -23,6 +23,6 @@ On macOS, Linux or Vercel, `npm run dev` / `npm run build` work as usual.
 
 ## Before going live
 
-1. Set `NEXT_PUBLIC_SITE_URL` to the real domain. It's used for the canonical URL, Open Graph, the sitemap and structured data.
+1. Set `NEXT_PUBLIC_SITE_URL` to the real domain once there is one (it defaults to https://levant-bakery.vercel.app). It's used for the canonical URL, Open Graph, the sitemap and structured data.
 2. Confirm the menu descriptions and drink notes in `lib/site.ts` with the owner. The item names come from their Instagram captions; the one-line descriptions were written for the site.
 3. Remove past dates from `closures` in `lib/site.ts` (Thanksgiving 2026 is listed).

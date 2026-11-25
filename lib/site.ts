@@ -6,7 +6,7 @@
 export const site = {
   name: "Levant Bakery & Café",
   shortName: "Levant Bakery",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://levantbakerycafe.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://levant-bakery.vercel.app",
   tagline: "Sweet & Savory",
   established: 2026,
   description:
